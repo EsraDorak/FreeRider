@@ -1,0 +1,5 @@
+{"properties": [{
+  "name": "application.print_bean_info",
+  "type": "java.lang.String",
+  "description": "A description for 'application.print_bean_info'"
+}]}

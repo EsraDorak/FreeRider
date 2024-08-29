@@ -1,0 +1,10 @@
+{
+"id":665142,
+"begin":1670180400000,
+"end":1670191200000,
+"pickup":"Berlin Lichtenberg",
+"dropoff":"Dortmond",
+"status":"Inquired",
+"customerId":27,
+"vehicleId":2000
+}

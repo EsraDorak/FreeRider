@@ -1,0 +1,51 @@
+CURL Commands:
+
+1. Customer:
+# See the full HTTP Request / Response:
+curl -v http://localhost:8080/v1/customers/1
+
+# Get all Customer:
+curl -X GET http://localhost:8080/v1/customers
+
+# Get Customer by ID:
+curl -X GET http://localhost:8080/v1/customers/4
+
+# POST new Customer:
+curl -X POST http://localhost:8080/v1/customers -d @cust_1111.json -H "Content-Type: application/json"
+curl -X GET http://localhost:8080/v1/customers/1111
+
+# PUT existing Customer:
+
+
+# DELETE Customer by ID:
+
+
+2. Reservatoin:
+# See the full HTTP Request / Response:
+curl -v http://localhost:8080/v1/reservations/145373
+
+# Get all Reservation:
+curl -X GET http://localhost:8080/v1/reservations
+
+# Get Reservation by ID:
+curl -X GET http://localhost:8080/v1/reservations/145373
+
+# POST new Reservation:
+curl -X POST http://localhost:8080/v1/reservations -d @Reserv_665142.json -H "Content-Type: application/json"
+curl -X GET http://localhost:8080/v1/reservations/665142
+
+# PUT existing Reservation:
+
+
+# DELETE Reservation by ID:
+
+
+3. Vehicle:
+# See the full HTTP Request / Response:
+curl -v http://localhost:8080/v1/vehicles/1000
+
+# Get all Reservation:
+curl -X GET http://localhost:8080/v1/vehicles
+
+# Get Reservation by ID:
+curl -X GET http://localhost:8080/v1/reservations/145373

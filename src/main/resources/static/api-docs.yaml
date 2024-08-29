@@ -1,0 +1,149 @@
+openapi: 3.0.1
+info:
+  description: REST API for the freerider Reservation Service
+  license:
+    name: Apache 2.0
+    url: http://springdoc.org
+  title: se2-freerider Service API
+  version: v3
+externalDocs:
+  description: freerider API Documentation
+  url: http://localhost:8080/v3/api-docs
+servers:
+  - url: http://localhost:8080
+    description: Generated server url
+paths:
+  /v1/customers:
+    get:
+      description: Return all customers (no limit, no pagination).
+      operationId: findAllCustomers
+      responses:
+        '200':
+          content:
+            application/json: {}
+          description: OK
+      summary: Return all customers.
+      tags:
+        - Customers endpoint
+    post:
+      description: Create new Customer from JSON data received in the Request-Body.
+      operationId: createCustomer
+      requestBody:
+        content:
+          application/json:
+            examples:
+              An example request with all fields provided with example values.:
+                description: An example request with all fields provided with example values.
+                summary: Full request
+                value: full
+              An example request with the minimum required fields to create.:
+                description: An example request with the minimum required fields to create.
+                summary: Minimal request
+                value: min
+            schema:
+              $ref: '#/components/schemas/Customer'
+        description: JSON data from which Customer object to create is deserialized.
+        required: true
+      responses:
+        '201':
+          description: Created
+        '400':
+          description: Bad Request
+        '409':
+          description: Conflict
+      summary: Create new Customer, Customer id must not exist.
+      tags:
+        - Customers endpoint
+    put:
+      description: Create new Customer from JSON data received in the Request-Body.
+      operationId: updateCustomer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties:
+                type: object
+        description: JSON data from which Customer object to update is deserialized.
+        required: true
+      responses:
+        '202':
+          description: Accepted
+        '400':
+          description: Bad Request
+        '404':
+          description: Not Found
+      summary: Create new Customer, Customer id must not exist.
+      tags:
+        - Customers endpoint
+  /v1/customers/{id}:
+    delete:
+      description: Delete Customer with id from database. If id is not found, return error 404 (not found). If Customer cannot be deleted due to foreign key dependencies, return error 409 (conflict).
+      operationId: deleteCustomerById
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '202':
+          description: Accepted
+        '400':
+          description: Bad Request
+        '404':
+          description: Not Found
+        '409':
+          description: Conflict
+      summary: Delete Customer with id from database, id must exist.
+      tags:
+        - Customers endpoint
+    get:
+      description: Return Customer if id exists, else return error 404 (not found).
+      operationId: findCustomerById
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          content:
+            application/json: {}
+          description: OK
+        '400':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Customer'
+          description: Bad Request
+        '404':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Customer'
+          description: Not Found
+      summary: Return Customer by id, id must not be negative.
+      tags:
+        - Customers endpoint
+components:
+  schemas:
+    Customer:
+      type: object
+      properties:
+        contact:
+          type: string
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        status:
+          type: string
+          enum:
+            - Active
+            - InRegistration
+            - Terminated

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+    xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"
+>
+    <modelVersion>4.0.0</modelVersion>
+<!--
+    # maven commands to build project:
+    mvn validate                        # validate correctness of pom.xml
+    mvn compile                         # compile sources to: target/classes
+    mvn test-compile                    # compile tests to: target/test-classes
+    mvn test                            # run tests, create: target/surefire-reports
+    mvn package                         # create: target/se2-freerider-0.0.1-SNAPSHOT.jar
+
+    mvn site -DgenerateReports=false    # create css and images for: target/site
+    mvn surefire-report:report          # run tests, create: target/site/index.html
+    mvn site -DgenerateReports=false surefire-report:report     # do both
+
+    mvn spring-boot:run                 # run application
+
+    mvn clean                           # remove target directory
+
+    mvn dependency:tree                 # show dependency tree
+    mvn dependency:build-classpath      # show classpath
+-->
+
+    <!-- Use Spring Boot as parent project. -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.0.1</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
+    <!-- Project GAV with groupId (G), artifactId (A) and version (V). -->
+    <groupId>de.freerider</groupId>
+    <artifactId>se2-freerider</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>se2-freerider</name>
+    <description>Software-Engineering-II Freerider car sharing project</description>
+
+    <!-- The properties section defines variables used in pom.xml. -->
+    <properties>
+        <java.version>19</java.version>
+        <skipTests>false</skipTests>    <!-- skip running tests -->
+
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <!-- prevent: [WARNING] Unable to locate Test Source XRef - DISABLED -->
+        <linkXRef>false</linkXRef>
+    </properties>
+
+    <!-- 
+        The dependencies section defines project dependenencies with Spring packages
+        chosen from:
+            https://mvnrepository.com/artifact/org.springframework.boot
+    -->
+    <dependencies>
+
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-test -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Spring Boot Starter Web (including Tomcat) -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- Springdoc OpenAPI Starter for Spring Web MVC -->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <version>2.0.2</version>
+    </dependency>
+
+        <!--
+            Add dependencies for Java Database Connectivity (JDBC):
+            - spring-boot-starter-jdbc     # Spring JDBC package
+            - mysql-connector-java         # MySQL database connector
+        -->
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-jdbc -->
+        <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+        <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <scope>runtime</scope>
+        </dependency>
+
+    </dependencies>
+
+    <!-- 
+        The build section defines plugins used for various stages of the maven build-process.
+        Plugins are also obtained from mvnrepository (as .jars) and used by maven itself. 
+    -->
+    <build>
+        <plugins>
+            <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-maven-plugin -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
